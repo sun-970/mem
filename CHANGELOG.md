@@ -7,6 +7,13 @@ The project publishes 0.x prerelease versions; a stable release line is not yet 
 
 ## [Unreleased]
 
+### Fixed
+
+- CI Web job now runs vitest unit tests (`npm test`) so the six test files
+  under `web/src/` are covered by the pipeline. The `npm run audit` step
+  retries transient registry failures (503, timeout, ECONNRESET) up to three
+  times instead of failing the entire Web leg on the first network hiccup.
+
 ## [0.1.2] - 2026-09-06
 
 ### Changed
