@@ -743,7 +743,16 @@ func containsMemoriesTx(
 			     JOIN workspaces AS w ON w.id = m.workspace_id
 			    WHERE w.resource_owner_user_id = $1
 			      AND m.lifecycle_status IN ('active', 'archived')
-			      AND (m.path = $2 OR left(m.path, length($2) + 1) = $2 || '/')
+			      AND (
+			          m.path = $2
+			          OR left(m.path, length($2) + 1) = $2 || '/'
+			          OR m.source_file_id IN (
+			              SELECT id FROM files
+			               WHERE user_id = $1
+			                 AND (folder_id = (SELECT id FROM folders WHERE user_id = $1 AND path = $2)
+			                      OR left(path, length($2) + 1) = $2 || '/')
+			          )
+			      )
 			 )`,
 			userID, path).Scan(&exists)
 		return exists, err
