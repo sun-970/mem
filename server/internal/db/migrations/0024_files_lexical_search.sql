@@ -1,7 +1,7 @@
 -- +goose Up
 -- Model-free lexical lane for the file corpus.  Mirrors the FTS + trigram
--- shape already established for memories (0008) so that filename and path
--- substring search works without an embedding worker.
+-- shape already established for memories (0008) so that filename substring
+-- search works without an embedding worker.
 
 -- +goose StatementBegin
 ALTER TABLE files
