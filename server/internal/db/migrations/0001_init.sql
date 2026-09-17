@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS embeddings_text (
     embedding       vector(768)
 );
 CREATE INDEX IF NOT EXISTS idx_embeddings_text_file ON embeddings_text (file_id);
--- HNSW index on embedding column is in migration 0024.
+-- HNSW index on embedding column is in migration 0025.
 -- +goose StatementEnd
 
 -- +goose StatementBegin
