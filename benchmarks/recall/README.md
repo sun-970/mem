@@ -170,6 +170,13 @@ rejected instead of being copied into an artifact.
 
 ## Live memd producer
 
+**NOT VERIFIED against a live memd instance.** The producer code and tests are
+checked in, but no end-to-end run against a running `memd` has been recorded.
+Issue #184's HOLD — "run the recall benchmark against a live deployment and
+attach the ranking artifact" — still requires a real production-class run; the
+fixture-level tests in this PR are **not** a substitute for that live
+acceptance. Do not close #184 on the basis of this PR alone.
+
 The `produce` subcommand queries a running `memd` over every dataset query and
 emits a `mem.recall-rankings.v1` file that the existing `run --rankings` path
 consumes. Latency is measured client-side per request; the `0 ms` sentinel
